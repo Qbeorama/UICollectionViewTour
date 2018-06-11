@@ -1,8 +1,8 @@
 import UIKit
 
 extension IndexPath {
-    init(row: Int) {
-        self.init(row: row, section: 0)
+    init(item: Int) {
+        self.init(item: item, section: 0)
     }
 }
 

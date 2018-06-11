@@ -3,7 +3,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
-    let cellModelsCount = 12
+    let cellModelsCount = 4
     var switchedLayout = false
 
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         UIColor(red: 4/255.0, green: 117/255.0, blue: 111/255.0, alpha: 1.0)
     ]
 
-    @IBAction func rearrangeItems(_ button: UIButton) {
+    @IBAction func rearrangeItemsBad(_ button: UIButton) {
         collectionView.performBatchUpdates({
 
             let lastIndex = cellModels.count - 1
@@ -37,14 +37,52 @@ class ViewController: UIViewController {
                 return
             }
 
+            // Update last cell
             let cellModel = cellModels[lastIndex]
+            cellModel.text = cellModel.text + " (u)"
+
+            // Remove it before inserting at top
             cellModels.remove(at: lastIndex)
+
+            // Delete "new last" cell
             cellModels.remove(at: lastIndex - 1)
+
+            // Insert updated cell to top
             cellModels.insert(cellModel, at: 0)
-            //IndexPath(row: 4),
-            collectionView.deleteItems(at:[IndexPath(row: lastIndex - 1)])
-            collectionView.moveItem(at: IndexPath(row: lastIndex), to: IndexPath(row: 0))
+
+            collectionView.reloadItems(at: [IndexPath(item: lastIndex)])
+            collectionView.deleteItems(at: [IndexPath(item: lastIndex - 1)])
+            collectionView.moveItem(at: IndexPath(item: lastIndex), to: IndexPath(item: 0))
         })
+    }
+    
+    @IBAction func rearrangeItemsGood(_ button: UIButton) {
+            // Reload cell first. Without animation.
+            UIView.performWithoutAnimation {
+                collectionView.performBatchUpdates({
+                    // Update last cell
+                    let cellModel = cellModels[3]
+                    cellModel.text = cellModel.text + " (u)"
+                    collectionView.reloadItems(at: [IndexPath(item:3)])
+                })
+            }
+
+            // Do the rest of work with animation
+            collectionView.performBatchUpdates({
+                // Delete last to top, but keep reference
+                let movedCell = cellModels[3]
+                cellModels.remove(at: 3)
+
+                // Delete previous-to-last
+                cellModels.remove(at: 2)
+
+                // Insert last to top
+                cellModels.insert(movedCell, at: 0)
+
+                // Update collectionView
+                collectionView.deleteItems(at: [IndexPath(item:2)])
+                collectionView.moveItem(at: IndexPath(item:3), to: IndexPath(item: 0))
+            })
     }
 
     @IBAction func changeLayout(_ button: UIButton) {

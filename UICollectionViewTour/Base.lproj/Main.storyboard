@@ -20,16 +20,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-qL-gmQ">
-                                <rect key="frame" x="0.0" y="20" width="187.5" height="60"/>
+                                <rect key="frame" x="0.0" y="20" width="188" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Wln-jz-TqL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
-                                <state key="normal" title="Rearrange">
+                                <state key="normal" title="Bad">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="rearrangeItems:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SH5-Qr-oEs"/>
+                                    <action selector="rearrangeItemsBad:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mbY-qH-wNa"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dme-Fo-tBg">
@@ -47,16 +47,16 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xby-oj-dx5">
-                                <rect key="frame" x="187" y="20" width="187.5" height="60"/>
+                                <rect key="frame" x="187.5" y="20" width="187.5" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="6E5-dg-KWL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
-                                <state key="normal" title="Switch layout">
+                                <state key="normal" title="Good">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zpt-49-0en"/>
+                                    <action selector="rearrangeItemsGood:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nhw-Hw-oy6"/>
                                 </connections>
                             </button>
                         </subviews>
